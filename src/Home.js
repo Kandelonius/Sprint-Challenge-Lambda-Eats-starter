@@ -8,8 +8,7 @@ const Home = props => {
         <>
           <h1>Home</h1>
           <img
-            className="home-img"
-            src="Assets\Pizza.jpg"
+            src="/Assets/Pizza.jpg"
             alt="pizza"
           />
         </>
