@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import * as yup from 'yup'
 import Form from './PizzaForm'
+import Home from './Home'
+import { useRouteMatch } from 'react-router-dom'
 
 
 const url = 'https://reqres.in/api/users'
@@ -33,6 +35,7 @@ const formSchema = yup.object().shape({
 })
 
 const App = () => {
+  const {path, url} = useRouteMatch();
   const [users, setUsers] = useState([])
   const [userValues, setUserValues] = useState(initialFormValues)
   const [formDisabled, setFormDisabled] = useState(true)
@@ -111,7 +114,12 @@ const App = () => {
   }
 
   return (
-    <div>
+    <Route>
+      <Switch>
+        <Route path='/order/:id' component={Form} />
+        <Route path="/" component={Home} />
+      </Switch>
+
       <h1>Pizza Pizza</h1>
       <Form
         values={userValues}
@@ -121,11 +129,8 @@ const App = () => {
         disabled={formDisabled}
         errors={formErrors}
       />
-      <Switch>
-        {/* <Route path='/pizza/:id' component={Pizza} />
-        <Route path="/" component={} /> */}
-      </Switch>
-    </div>
+
+    </Route>
   );
 };
 
