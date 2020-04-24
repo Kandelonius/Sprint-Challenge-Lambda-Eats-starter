@@ -5,6 +5,7 @@ function Form(props) {
         values,
         onInputChange,
         onCheckboxChange,
+        size,
         onSubmit,
         disabled,
         errors,
@@ -12,7 +13,7 @@ function Form(props) {
     // debugger
     return (
         <form className='form container'>
-            <h2>Onboarding Form</h2>
+            <h2>Ordering Form</h2>
             <div className='errors'>
                 {errors.username}
             </div>
@@ -29,15 +30,37 @@ function Form(props) {
                     value={values.size}
                     onChange={onInputChange}
                 >
+                    <option defaultValue=''>Please choose</option>
                     <option value='small'>Small</option>
                     <option value='medium'>Medium</option>
-                    <option value='large'>large</option>
+                    {/* <option value='large'>large</option> */}
                 </select></label>
-            <label>Toppings:&nbsp;
-                <input
-                    checked={values.topping}
+            <label>Pepperoni:&nbsp;
+    <input
+                    checked={values.pepperoni}
                     onChange={onCheckboxChange}
-                    name='topoing'
+                    name='pepperoni'
+                    type='checkbox'
+                /></label><br />
+            <label>Sausage:&nbsp;
+    <input
+                    checked={values.sausage}
+                    onChange={onCheckboxChange}
+                    name='sausage'
+                    type='checkbox'
+                /></label><br />
+            <label>Jalopeno:&nbsp;
+    <input
+                    checked={values.jalopeno}
+                    onChange={onCheckboxChange}
+                    name='jalopeno'
+                    type='checkbox'
+                /></label><br />
+            <label>Onion:&nbsp;
+    <input
+                    checked={values.onion}
+                    onChange={onCheckboxChange}
+                    name='onion'
                     type='checkbox'
                 /></label><br />
             <label>

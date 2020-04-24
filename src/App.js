@@ -9,11 +9,12 @@ const url = 'https://reqres.in/api/users'
 const initialFormValues = {
   username: '',
   size: '',
-  Toppings: {
-    pepperoni:false,
-    sausage:false,
-    jalopeno:false,
-    onions:false,
+  instructions: '',
+  toppings: {
+    pepperoni: false,
+    sausage: false,
+    jalopeno: false,
+    onions: false,
   }
 }
 const initialFormErrors = {
@@ -25,6 +26,10 @@ const formSchema = yup.object().shape({
     .string()
     .min(2, 'username must have at least 2 characters!')
     .required('username is required'),
+  size: yup
+    .string(),
+  instructions: yup
+    .string()
 })
 
 const App = () => {
@@ -57,14 +62,16 @@ const App = () => {
 
     const newUser = {
       username: userValues.username,
-      size: userValues.size,
-      TOS: Object.keys(userValues.TOS),
+      size: userValues.size === 'small' ? false : true,
+      hobbies: Object.keys(userValues.toppings)
+        .filter(topping => userValues.toppings[topping] === true)
     }
     postUser(newUser)
     setUserValues(initialFormValues)
   }
   const onInputChange = evt => {
     const name = evt.target.name
+    const size = evt.target.size
     const value = evt.target.value
     const checked = evt.target.checked
 
@@ -96,8 +103,10 @@ const App = () => {
 
     setUserValues({
       ...userValues,
-      ...userValues.TOS,
-      [name]: isChecked,
+      toppings: {
+        ...userValues.toppings,
+        [name]: isChecked,
+      }
     })
   }
 
