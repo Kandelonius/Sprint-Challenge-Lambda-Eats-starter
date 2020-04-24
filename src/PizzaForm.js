@@ -15,8 +15,6 @@ function Form(props) {
             <h2>Onboarding Form</h2>
             <div className='errors'>
                 {errors.username}
-                {errors.email}
-                {errors.password}
             </div>
             <label>Username:&nbsp;
                 <input
@@ -41,7 +39,12 @@ function Form(props) {
                     onChange={onCheckboxChange}
                     name='topoing'
                     type='checkbox'
-                /></label>
+                /></label><br />
+            <label>
+                Special instructions:&nbsp;
+                </label><br />
+            <textarea>
+            </textarea><br />
 
             <button onClick={onSubmit} disabled={disabled}>Submit</button>
         </form>
