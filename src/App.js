@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { BrowserRouter as Route, Link, Switch } from "react-router-dom";
 import Form from './PizzaForm'
 import Home from './Home'
-import { useRouteMatch } from 'react-router-dom'
+import Div from './styled-comp'
 
 
 
 
 const App = () => {
   const [home] = useState(Home);
-  // const { path, url } = useRouteMatch();
 
 
   return (
-    <div>
+    <Div>
       <nav className="navbar">
         <li>
           <Link to="/">Home</Link>
@@ -28,7 +27,7 @@ const App = () => {
 
         <Route path="/"  ><Home /></Route>
       </Switch>
-    </div>
+    </Div>
   );
 };
 
